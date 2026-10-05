@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Local Hierarchical Classifier</title>
+  <style>
+    :root{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#e9edf2;background:#0d1117;color-scheme:dark}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:linear-gradient(180deg,#0d1117,#111827);padding:28px}
+    main{max-width:1100px;margin:auto;display:grid;gap:16px}
+    .card{background:#151b23;border:1px solid #2a3442;border-radius:14px;padding:18px;box-shadow:0 8px 30px rgba(0,0,0,.16)}
+    header{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
+    h1{font-size:24px;margin:0 0 6px}.muted{color:#8d99a8}.eyebrow{text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:#8d99a8;font-weight:700}
+    .pill{padding:6px 10px;border-radius:999px;background:#10161e;border:1px solid #2a3442;font:600 12px ui-monospace,monospace}
+    label{display:block;font-size:12px;color:#a8b3c2;font-weight:700;margin-bottom:7px}
+    textarea,input{width:100%;background:#0e141b;color:#e9edf2;border:1px solid #2a3442;border-radius:9px;padding:11px;outline:none}
+    textarea{min-height:130px;resize:vertical}.grid{display:grid;grid-template-columns:1.3fr .7fr;gap:16px}
+    @media(max-width:800px){.grid{grid-template-columns:1fr}}
+    .row-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
+    button{border:1px solid #39475a;background:#18212c;color:#e9edf2;border-radius:8px;padding:8px 12px;cursor:pointer}button:hover{background:#202b38}button:disabled{opacity:.5;cursor:default}
+    .primary{background:#4f46e5;border-color:#6366f1}.primary:hover{background:#5b54eb}
+    .examples{display:flex;gap:7px;flex-wrap:wrap}.candidate-list{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;max-height:390px;overflow:auto}
+    @media(max-width:650px){.candidate-list{grid-template-columns:1fr}}
+    .candidate{padding:9px 10px;background:#0f151d;border:1px solid #25303d;border-radius:8px;font-size:12px;display:flex;gap:8px}.id{font-family:ui-monospace,monospace;color:#818cf8;min-width:55px}
+    .winner{display:flex;justify-content:space-between;gap:14px;align-items:center;background:#101820;border:1px solid #303d4c;border-radius:10px;padding:14px}.winner-name{font-size:18px;font-weight:700;margin-top:2px}.winner-score{font:700 28px ui-monospace,monospace}
+    .route{margin-top:10px;padding:9px 11px;border-radius:8px;font:700 12px ui-monospace,monospace}.accept{background:#0b2a20;color:#5ee7ad}.review{background:#332812;color:#f9c75a}.abstain{background:#33181c;color:#ff9099}
+    .meta{margin-top:10px;color:#8d99a8;font:12px ui-monospace,monospace}.bars{display:grid;gap:9px;margin-top:14px}.row-top{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px}.bar{height:6px;background:#0c1218;border-radius:999px;overflow:hidden}.bar>div{height:100%;background:#6366f1;border-radius:999px}
+    pre{white-space:pre-wrap;background:#0b1016;border:1px solid #25303d;border-radius:9px;padding:12px;overflow:auto;font-size:11px}.small{font-size:12px;line-height:1.5}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:650px){.two{grid-template-columns:1fr}}
+      select{width:100%;background:#0e141b;color:#e9edf2;border:1px solid #2a3442;border-radius:9px;padding:10px}
+    .file{display:inline-block;cursor:pointer;color:#818cf8;font-weight:600}.controls{display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;min-width:260px}
+    .tree{max-height:390px;overflow:auto;font-size:12px;margin-top:8px}.tree details{margin-left:12px}.tree summary{cursor:pointer;padding:3px 0}.tree .leaf{margin-left:30px;padding:2px 0;color:#c4ccd8}.tree .d{color:#8d99a8}
+    .warn{color:#f9c75a;margin-top:6px}.path{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px;font-size:18px;font-weight:700}.path .arrow{color:#8d99a8;font-weight:400}.path small{font:600 11px ui-monospace,monospace;color:#8d99a8}
+    .step{margin-top:14px;padding-top:12px;border-top:1px solid #25303d}.alt{font-size:12px;color:#a8b3c2;margin-top:4px}.chosen .row-top{color:#a5b4fc;font-weight:700}
+  </style>
+</head>
+<body>
+  <main>
+    <section class="card">
+      <header>
+        <div>
+          <div class="eyebrow">Local / browser-only decision model</div>
+          <h1>Local Hierarchical Classifier</h1>
+          <div class="muted" id="taxName">Loading taxonomy…</div>
+        </div>
+        <div>
+          <div class="pill">Backend: <span id="backend">starting…</span></div>
+          <div class="muted small" id="status" style="margin-top:8px;text-align:right">Loading taxonomy…</div>
+        </div>
+      </header>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <div class="two">
+          <div>
+            <label for="taxSelect">Taxonomy</label>
+            <select id="taxSelect"></select>
+            <div style="margin-top:7px"><label class="file">Load your own taxonomy JSON… <input id="taxFile" type="file" accept=".json,application/json" hidden></label></div>
+          </div>
+          <div>
+            <label>Examples</label>
+            <div class="examples" id="examples"></div>
+          </div>
+        </div>
+        <div style="margin-top:12px">
+          <label for="context">Text to classify</label>
+          <textarea id="context" placeholder="Describe the thing to classify in natural language…"></textarea>
+        </div>
+        <div class="row-actions">
+          <div class="controls">
+            <div>
+              <label for="threshold">Accept threshold (final choice within category)</label>
+              <input id="threshold" type="range" min="0.50" max="0.99" value="0.85" step="0.01">
+              <div class="muted small">τ = <span id="thresholdValue">0.85</span></div>
+            </div>
+            <div>
+              <label for="beam">Beam width (alternatives explored per level)</label>
+              <input id="beam" type="range" min="1" max="4" value="2" step="1">
+              <div class="muted small">beam = <span id="beamValue">2</span> · higher = slower, more robust</div>
+            </div>
+          </div>
+          <button id="run" class="primary" disabled>Classify locally</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow">Taxonomy</div>
+        <strong id="candidateCount">—</strong>
+        <div id="warnings" class="small warn"></div>
+        <div class="tree" id="tree"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="eyebrow">Result</div>
+      <div id="result" class="muted" style="padding-top:8px">Classify some text to see the path through the hierarchy.</div>
+    </section>
+
+    <section class="card small">
+      <strong>Calibration caveat:</strong> each level is a small menu (children + "insufficient evidence"), scored by the frozen Verdict checkpoint with its published per-K temperature. Those temperatures were fitted on the authors' data, not yours, so treat probabilities as relative confidence, and validate the accept threshold on your own labeled examples.
+    </section>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

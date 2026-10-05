@@ -1,0 +1,6 @@
+{
+  "name": "local-hierarchical-classifier",
+  "private": true,
+  "type": "module",
+  "scripts": { "setup": "node setup.mjs", "serve": "node serve.mjs", "test": "node --test tests/taxonomy.test.mjs" }
+}

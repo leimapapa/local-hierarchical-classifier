@@ -1,0 +1,201 @@
+{
+ "name": "Museum scientific instruments (synthetic)",
+ "question": "Which category best matches this description?",
+ "root": {
+  "children": [
+   {
+    "id": "navigation",
+    "name": "Navigation",
+    "description": "finding position or direction",
+    "children": [
+     {
+      "id": "MI-001",
+      "name": "Brass Marine Sextant",
+      "description": "graduated arc, index arm, sighting telescope"
+     },
+     {
+      "id": "MI-013",
+      "name": "Pocket Magnetic Compass",
+      "description": "magnetic needle, circular dial, direction markings"
+     },
+     {
+      "id": "MI-002",
+      "name": "Pocket Astrolabe",
+      "description": "circular brass plate, rotating rete, engraved scales"
+     }
+    ]
+   },
+   {
+    "id": "surveying",
+    "name": "Surveying",
+    "description": "measuring land, angles and distances",
+    "children": [
+     {
+      "id": "MI-003",
+      "name": "Surveyor Theodolite",
+      "description": "mounted telescope, horizontal circle, vertical circle"
+     },
+     {
+      "id": "MI-004",
+      "name": "Precision Spirit Level",
+      "description": "long rectangular body, bubble vials, machined end faces"
+     },
+     {
+      "id": "MI-014",
+      "name": "Optical Clinometer",
+      "description": "sighting tube, angle scale, compact rectangular body"
+     },
+     {
+      "id": "MI-024",
+      "name": "Surveyor's Plane Table Alidade",
+      "description": "straight rule, sighting vanes, graduated edge"
+     }
+    ]
+   },
+   {
+    "id": "astronomy",
+    "name": "Astronomy",
+    "description": "observing or modelling the sky",
+    "children": [
+     {
+      "id": "MI-005",
+      "name": "Celestial Globe",
+      "description": "spherical body, star markings, meridian ring"
+     },
+     {
+      "id": "MI-006",
+      "name": "Armillary Sphere",
+      "description": "nested rings, central axis, graduated circles"
+     },
+     {
+      "id": "MI-007",
+      "name": "Mechanical Orrery",
+      "description": "visible gears, multiple small spheres, central body"
+     },
+     {
+      "id": "MI-008",
+      "name": "Planisphere Disc",
+      "description": "flat circular format, rotating overlay, horizon window"
+     },
+     {
+      "id": "MI-009",
+      "name": "Transit Telescope",
+      "description": "long telescope tube, fixed axis, single-plane motion"
+     },
+     {
+      "id": "MI-023",
+      "name": "Tellurium Demonstrator",
+      "description": "Earth model, Moon model, linked arms"
+     }
+    ]
+   },
+   {
+    "id": "meteorology",
+    "name": "Meteorology",
+    "description": "measuring weather and air",
+    "children": [
+     {
+      "id": "MI-010",
+      "name": "Analog Barometer",
+      "description": "circular dial, single pointer, pressure scale"
+     },
+     {
+      "id": "MI-011",
+      "name": "Hair Hygrometer",
+      "description": "humidity dial, fine mechanical linkage, vented case"
+     },
+     {
+      "id": "MI-012",
+      "name": "Glass Spirit Thermometer",
+      "description": "glass tube, liquid column, temperature graduations"
+     }
+    ]
+   },
+   {
+    "id": "optics",
+    "name": "Optics",
+    "description": "light, lenses and spectra",
+    "children": [
+     {
+      "id": "MI-015",
+      "name": "Laboratory Spectroscope",
+      "description": "entrance slit, optical tube, viewing eyepiece"
+     },
+     {
+      "id": "MI-021",
+      "name": "Camera Lucida Prism",
+      "description": "small prism, adjustable arm, compact optical head"
+     },
+     {
+      "id": "MI-022",
+      "name": "Magic Lantern Projector",
+      "description": "slide carrier, lens cone, lamp housing"
+     }
+    ]
+   },
+   {
+    "id": "electrostatics",
+    "name": "Electrostatics",
+    "description": "static electric charge",
+    "children": [
+     {
+      "id": "MI-016",
+      "name": "Pocket Electroscope",
+      "description": "glass enclosure, conductive terminal, lightweight leaves"
+     }
+    ]
+   },
+   {
+    "id": "electrical-measurement",
+    "name": "Electrical Measurement",
+    "description": "measuring electric current and voltage",
+    "children": [
+     {
+      "id": "MI-017",
+      "name": "Moving-Coil Galvanometer",
+      "description": "needle or mirror scale, magnet assembly, suspended coil"
+     },
+     {
+      "id": "MI-018",
+      "name": "Wheatstone Bridge Box",
+      "description": "multiple terminals, resistor decade controls, rectangular case"
+     }
+    ]
+   },
+   {
+    "id": "calculation",
+    "name": "Calculation",
+    "description": "performing arithmetic",
+    "children": [
+     {
+      "id": "MI-019",
+      "name": "Slide Rule",
+      "description": "long rectangular body, sliding center, logarithmic scales"
+     },
+     {
+      "id": "MI-020",
+      "name": "Mechanical Adding Machine",
+      "description": "key rows, numbered register windows, geared mechanism"
+     }
+    ]
+   }
+  ]
+ },
+ "examples": [
+  {
+   "title": "Compass",
+   "text": "It is a small circular field instrument with a freely pivoting magnetized needle over a marked direction dial and a transparent cover.",
+   "expect": "Pocket Magnetic Compass"
+  },
+  {
+   "title": "Orrery",
+   "text": "It is a tabletop mechanism with visible gears and several small spherical bodies arranged around a central body to demonstrate orbital motion.",
+   "expect": "Mechanical Orrery"
+  },
+  {
+   "title": "Spectroscope",
+   "text": "The instrument has an entrance slit, optical tube, viewing eyepiece and angular scale and is used to examine separated wavelengths of light.",
+   "expect": "Laboratory Spectroscope"
+  }
+ ]
+}

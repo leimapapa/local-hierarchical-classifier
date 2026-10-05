@@ -1,0 +1,96 @@
+{
+ "name": "Animals (example)",
+ "question": "Which group best matches this description?",
+ "root": {
+  "children": [
+   {
+    "id": "mammal",
+    "name": "Mammals",
+    "description": "warm-blooded, fur, nurse their young",
+    "children": [
+     {
+      "id": "cat",
+      "name": "Cat",
+      "description": "retractable claws, whiskers, purrs, hunts small prey"
+     },
+     {
+      "id": "dog",
+      "name": "Dog",
+      "description": "barks, wags tail, domesticated pack animal, keen sense of smell"
+     },
+     {
+      "id": "mouse",
+      "name": "Mouse",
+      "description": "tiny rodent, long thin tail, gnaws, squeaks"
+     },
+     {
+      "id": "giraffe",
+      "name": "Giraffe",
+      "description": "extremely long neck, spotted coat, eats tree leaves"
+     }
+    ]
+   },
+   {
+    "id": "reptile",
+    "name": "Reptiles",
+    "description": "cold-blooded, dry scaly skin, lay eggs",
+    "children": [
+     {
+      "id": "snake",
+      "name": "Snake",
+      "description": "legless, long flexible body, flicking tongue"
+     },
+     {
+      "id": "lizard",
+      "name": "Lizard",
+      "description": "four legs, scales, long tail, basks on rocks"
+     },
+     {
+      "id": "turtle",
+      "name": "Turtle",
+      "description": "hard shell, slow moving, retracts its head"
+     }
+    ]
+   },
+   {
+    "id": "bug",
+    "name": "Bugs",
+    "description": "insects, six legs, exoskeleton, antennae",
+    "children": [
+     {
+      "id": "ant",
+      "name": "Ant",
+      "description": "tiny social insect, colony, carries food in lines"
+     },
+     {
+      "id": "butterfly",
+      "name": "Butterfly",
+      "description": "large colorful wings, feeds on nectar, starts as a caterpillar"
+     },
+     {
+      "id": "beetle",
+      "name": "Beetle",
+      "description": "hard wing covers, chewing mouthparts, many species"
+     }
+    ]
+   }
+  ]
+ },
+ "examples": [
+  {
+   "title": "Cat",
+   "text": "A small furry pet with whiskers and retractable claws that purrs when petted and chases mice.",
+   "expect": "Cat"
+  },
+  {
+   "title": "Turtle",
+   "text": "A slow animal with a hard domed shell that pulls its head inside when scared, and lays eggs on the beach.",
+   "expect": "Turtle"
+  },
+  {
+   "title": "Butterfly",
+   "text": "A flying creature with large colorful wings that drinks nectar from flowers after emerging from a chrysalis.",
+   "expect": "Butterfly"
+  }
+ ]
+}

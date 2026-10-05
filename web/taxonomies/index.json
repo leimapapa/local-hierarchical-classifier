@@ -1,0 +1,12 @@
+{
+ "files": [
+  {
+   "file": "taxonomies/animals.json",
+   "title": "Animals (example)"
+  },
+  {
+   "file": "taxonomies/instruments.json",
+   "title": "Museum instruments (synthetic)"
+  }
+ ]
+}
