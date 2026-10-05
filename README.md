@@ -16,7 +16,7 @@ Browsers block workers/WASM/fetch on `file://`, so some static server is require
 
 ## Deploy with GitHub Pages
 
-The ONNX model is stored with Git LFS. The workflow in `.github/workflows/deploy.yml` checks out LFS assets, prepares the browser dependencies, and deploys `web/` to GitHub Pages. Enable GitHub Pages for the repository with **Settings → Pages → Build and deployment → Source: GitHub Actions**; subsequent pushes to `master` deploy automatically. Git LFS storage and bandwidth limits apply.
+The ONNX model is stored with Git LFS. The workflow in `.github/workflows/deploy.yml` checks out LFS assets and deploys `web/` directly to GitHub Pages. Enable GitHub Pages for the repository with **Settings → Pages → Build and deployment → Source: GitHub Actions**; subsequent pushes to `master` deploy automatically. Git LFS storage and bandwidth limits apply.
 
 ## How it works
 
