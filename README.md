@@ -14,6 +14,10 @@ npm test            # routing/validation/CSV tests (no model needed)
 ```
 Browsers block workers/WASM/fetch on `file://`, so some static server is required. `web/` must be the site root.
 
+## Deploy with GitHub Pages
+
+The workflow in `.github/workflows/deploy.yml` downloads and verifies the ONNX model during the Actions run, then deploys `web/` to GitHub Pages. The model is included in the Pages artifact but is not committed to the repository. Enable GitHub Pages for the repository with **Settings → Pages → Build and deployment → Source: GitHub Actions**; subsequent pushes to `master` deploy automatically.
+
 ## How it works
 
 The model first routes to the highest-scoring top-level category, ignoring `insufficient evidence` at that routing step.
